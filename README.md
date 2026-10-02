@@ -2,6 +2,10 @@
 
 Discord k-ID Age Verification Bypass — generate a verification link directly from the Discord client and send it to the verifier to complete age verification on your behalf.
 
+[![Donate on Ko-fi](https://storage.ko-fi.com/cdn/kofi2.png?v=3)](https://ko-fi.com/tinysweet)
+
+> **Currently free** — Verification is free at the moment. Support the project via the donate button above if you find it useful.
+
 ---
 
 <details>
@@ -12,6 +16,8 @@ Discord k-ID Age Verification Bypass — generate a verification link directly f
 This script hooks into Discord's internal webpack module registry from the browser console. It locates the k-ID age verification module, enumerates the available verification methods, and calls Discord's own API to generate a verification link — without going through the official UI flow.
 
 You generate the link on your own Discord account, then send it to the verifier (`tinysweet_dev`) who completes the verification for you.
+
+> **Currently free:** Verification is free right now. Feel free to donate if you appreciate the work.
 
 ## Requirements
 
@@ -38,6 +44,8 @@ You generate the link on your own Discord account, then send it to the verifier 
 8. The link is auto-copied to your clipboard. If not, click **Copy**.
 9. **Send the generated link to `tinysweet_dev` via DM.**
 10. The verifier (`tinysweet_dev`) opens the link and completes the verification for you.
+
+---
 
 ## Verification methods
 
@@ -81,6 +89,8 @@ Script này hook vào webpack module registry nội bộ của Discord client t�
 
 Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi link đó cho người xác minh (`tinysweet_dev`) để họ hoàn tất xác minh hộ bạn.
 
+> **Hiện đang miễn phí:** Dịch vụ xác minh đang free. Nếu thấy hữu ích thì donate ủng hộ nhé.
+
 ## Yêu cầu
 
 - Discord web đang mở — [https://discord.com/app](https://discord.com/app) hoặc [https://discord.com/channels/@me](https://discord.com/channels/@me)
@@ -106,6 +116,8 @@ Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi l
 8. Link sẽ tự động được copy vào clipboard. Nếu không, nhấn **Copy**.
 9. **Gửi link vừa tạo cho `tinysweet_dev` qua DM.**
 10. Người xác minh (`tinysweet_dev`) sẽ mở link và hoàn tất xác minh hộ bạn.
+
+---
 
 ## Các phương thức xác minh
 
