@@ -8,7 +8,6 @@ Discord k-ID Age Verification Bypass — generate a verification link directly f
 
 <a href="https://ko-fi.com/tinysweet"><img src="https://storage.ko-fi.com/cdn/kofi2.png?v=3" width="140" alt="Support me on Ko-fi"></a>
 
-> [!TIP]
 > **Currently free** — Verification is free at the moment. Support the project via the donate button above if you find it useful.
 
 ---
@@ -22,7 +21,6 @@ This script hooks into Discord's internal webpack module registry from the brows
 
 You generate the link on your own Discord account, then send it to the verifier (`tinysweet_dev`) who completes the verification for you.
 
-> [!TIP]
 > **Currently free:** Verification is free right now. Feel free to donate if you appreciate the work.
 
 ## Requirements
@@ -95,7 +93,6 @@ Script này hook vào webpack module registry nội bộ của Discord client t�
 
 Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi link đó cho người xác minh (`tinysweet_dev`) để họ hoàn tất xác minh hộ bạn.
 
-> [!TIP]
 > **Hiện đang miễn phí:** Dịch vụ xác minh đang free. Nếu thấy hữu ích thì donate ủng hộ nhé.
 
 ## Yêu cầu
