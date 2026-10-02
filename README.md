@@ -1,10 +1,14 @@
 # k-ID Age Verification Bypass
 
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Support](https://img.shields.io/discord/1392413874204049518?style=for-the-badge&logo=discord&logoColor=white&label=Support&color=5865F2)](https://discord.gg/hqr6YW2MjJ)
+[![Browser](https://img.shields.io/badge/Browser%20Console-000000?style=for-the-badge&logo=googlechrome&logoColor=white)](#usage)
+
 Discord k-ID Age Verification Bypass — generate a verification link directly from the Discord client and send it to the verifier to complete age verification on your behalf.
 
-[![Donate on Ko-fi](https://storage.ko-fi.com/cdn/kofi2.png?v=3)](https://ko-fi.com/tinysweet)
+<a href="https://ko-fi.com/tinysweet"><img src="https://storage.ko-fi.com/cdn/kofi2.png?v=3" width="140" alt="Support me on Ko-fi"></a>
 
-> **Currently free** — Verification is free at the moment. Support the project via the donate button above if you find it useful.
+> <span style="color:#57F287; font-weight:bold">Currently free</span> — Verification is free at the moment. Support the project via the donate button above if you find it useful.
 
 ---
 
@@ -17,7 +21,7 @@ This script hooks into Discord's internal webpack module registry from the brows
 
 You generate the link on your own Discord account, then send it to the verifier (`tinysweet_dev`) who completes the verification for you.
 
-> **Currently free:** Verification is free right now. Feel free to donate if you appreciate the work.
+> <span style="color:#57F287; font-weight:bold">Currently free:</span> Verification is free right now. Feel free to donate if you appreciate the work.
 
 ## Requirements
 
@@ -29,7 +33,7 @@ You generate the link on your own Discord account, then send it to the verifier 
 
 1. Open Discord in your browser and log in to the account you want verified.
 2. Press **F12** to open DevTools → go to the **Console** tab.
-3. **Allow pasting** — Chromium blocks pasting into the console by default. Type this and press Enter:
+3. <span style="color:#FEE75C; font-weight:bold">Allow pasting</span> — Chromium blocks pasting into the console by default. Type this and press Enter:
 
    ```
    allow pasting
@@ -42,7 +46,7 @@ You generate the link on your own Discord account, then send it to the verifier 
 6. Select a verification method from the dropdown.
 7. Click **Generate verification link**.
 8. The link is auto-copied to your clipboard. If not, click **Copy**.
-9. **Send the generated link to `tinysweet_dev` via DM.**
+9. <span style="color:#57F287; font-weight:bold">Send the generated link to `tinysweet_dev` via DM.</span>
 10. The verifier (`tinysweet_dev`) opens the link and completes the verification for you.
 
 ---
@@ -89,7 +93,7 @@ Script này hook vào webpack module registry nội bộ của Discord client t�
 
 Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi link đó cho người xác minh (`tinysweet_dev`) để họ hoàn tất xác minh hộ bạn.
 
-> **Hiện đang miễn phí:** Dịch vụ xác minh đang free. Nếu thấy hữu ích thì donate ủng hộ nhé.
+> <span style="color:#57F287; font-weight:bold">Hiện đang miễn phí:</span> Dịch vụ xác minh đang free. Nếu thấy hữu ích thì donate ủng hộ nhé.
 
 ## Yêu cầu
 
@@ -101,7 +105,7 @@ Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi l
 
 1. Mở Discord trên trình duyệt và đăng nhập vào tài khoản bạn muốn xác minh.
 2. Nhấn **F12** để mở DevTools → chuyển sang tab **Console**.
-3. **Allow pasting** — Chromium chặn paste vào console mặc định. Gõ dòng này rồi Enter:
+3. <span style="color:#FEE75C; font-weight:bold">Allow pasting</span> — Chromium chặn paste vào console mặc định. Gõ dòng này rồi Enter:
 
    ```
    allow pasting
@@ -114,7 +118,7 @@ Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi l
 6. Chọn phương thức xác minh từ dropdown.
 7. Nhấn **Generate verification link**.
 8. Link sẽ tự động được copy vào clipboard. Nếu không, nhấn **Copy**.
-9. **Gửi link vừa tạo cho `tinysweet_dev` qua DM.**
+9. <span style="color:#57F287; font-weight:bold">Gửi link vừa tạo cho `tinysweet_dev` qua DM.</span>
 10. Người xác minh (`tinysweet_dev`) sẽ mở link và hoàn tất xác minh hộ bạn.
 
 ---
