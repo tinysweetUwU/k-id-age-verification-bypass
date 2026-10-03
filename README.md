@@ -8,7 +8,7 @@ Discord k-ID Age Verification Bypass — generate a verification link directly f
 
 <a href="https://ko-fi.com/tinysweet"><img src="https://storage.ko-fi.com/cdn/kofi2.png?v=3" width="140" alt="Support me on Ko-fi"></a>
 
-> **Currently free** — Verification is free at the moment. Support the project via the donate button above if you find it useful.
+> **Pricing notice** — Currently **still free**. Starting **October 5th**, verification will cost **$2 per verification** (PayPal). Contact `tinysweet_dev` for payment details.
 
 ---
 
@@ -21,7 +21,7 @@ This script hooks into Discord's internal webpack module registry from the brows
 
 You generate the link on your own Discord account, then send it to the verifier (`tinysweet_dev`) who completes the verification for you.
 
-> **Currently free:** Verification is free right now. Feel free to donate if you appreciate the work.
+> **Pricing notice:** Currently **still free**. Starting **October 5th**, verification will cost **$2 per verification** (PayPal). Contact `tinysweet_dev` for payment details.
 
 ## Requirements
 
@@ -46,7 +46,7 @@ You generate the link on your own Discord account, then send it to the verifier 
 6. Select a verification method from the dropdown.
 7. Click **Generate verification link**.
 8. The link is auto-copied to your clipboard. If not, click **Copy**.
-9. **Send the generated link to `tinysweet_dev` via DM.**
+9. **Send the generated link to `tinysweet_dev` via DM** (free until Oct 5th; $2 via PayPal after that).
 10. The verifier (`tinysweet_dev`) opens the link and completes the verification for you.
 
 ---
@@ -93,7 +93,7 @@ Script này hook vào webpack module registry nội bộ của Discord client t�
 
 Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi link đó cho người xác minh (`tinysweet_dev`) để họ hoàn tất xác minh hộ bạn.
 
-> **Hiện đang miễn phí:** Dịch vụ xác minh đang free. Nếu thấy hữu ích thì donate ủng hộ nhé.
+> **Thông báo giá:** Hiện tại **vẫn miễn phí**. Từ **ngày 5 tháng 10**, dịch vụ sẽ tính phí **$2 / lần** (PayPal). Liên hệ `tinysweet_dev` để biết chi tiết thanh toán.
 
 ## Yêu cầu
 
@@ -118,7 +118,7 @@ Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi l
 6. Chọn phương thức xác minh từ dropdown.
 7. Nhấn **Generate verification link**.
 8. Link sẽ tự động được copy vào clipboard. Nếu không, nhấn **Copy**.
-9. **Gửi link vừa tạo cho `tinysweet_dev` qua DM.**
+9. **Gửi link vừa tạo cho `tinysweet_dev` qua DM** (miễn phí đến 5/10; sau đó $2 qua PayPal).
 10. Người xác minh (`tinysweet_dev`) sẽ mở link và hoàn tất xác minh hộ bạn.
 
 ---
