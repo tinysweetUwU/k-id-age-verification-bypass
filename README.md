@@ -59,6 +59,8 @@ Chat screenshots of users who contacted and successfully completed age verificat
 
 <img src="./proof/Screenshot-24.png" width="600">
 
+<img src="./proof/Screenshot-25.png" width="600">
+
 </details>
 
 ---
