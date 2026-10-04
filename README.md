@@ -13,6 +13,25 @@ Discord k-ID Age Verification Bypass — generate a verification link directly f
 ---
 
 <details>
+<summary><b>Proof — Completed verifications</b></summary>
+
+Chat screenshots of users who contacted and successfully completed age verification:
+
+| | | |
+|:---:|:---:|:---:|
+| ![Proof 04](./proof/Screenshot-04.png) | ![Proof 05](./proof/Screenshot-05.png) | ![Proof 06](./proof/Screenshot-06.png) |
+| ![Proof 07](./proof/Screenshot-07.png) | ![Proof 08](./proof/Screenshot-08.png) | ![Proof 09](./proof/Screenshot-09.png) |
+| ![Proof 10](./proof/Screenshot-10.png) | ![Proof 11](./proof/Screenshot-11.png) | ![Proof 12](./proof/Screenshot-12.png) |
+| ![Proof 13](./proof/Screenshot-13.png) | ![Proof 14](./proof/Screenshot-14.png) | ![Proof 15](./proof/Screenshot-15.png) |
+| ![Proof 16](./proof/Screenshot-16.png) | ![Proof 17](./proof/Screenshot-17.png) | ![Proof 18](./proof/Screenshot-18.png) |
+| ![Proof 19](./proof/Screenshot-19.png) | ![Proof 20](./proof/Screenshot-20.png) | ![Proof 21](./proof/Screenshot-21.png) |
+| ![Proof 22](./proof/Screenshot-22.png) | ![Proof 23](./proof/Screenshot-23.png) | ![Proof 24](./proof/Screenshot-24.png) |
+
+</details>
+
+---
+
+<details>
 <summary><b>🇬🇧 English</b></summary>
 
 ## What it does
