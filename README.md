@@ -113,7 +113,7 @@ You generate the link on your own Discord account, then send it to the verifier 
 6. Select a verification method from the dropdown.
 7. Click **Generate verification link**.
 8. The link is auto-copied to your clipboard. If not, click **Copy**.
-9. **Send the generated link to `tinysweet_dev` via DM** (after contacting `tinysweet._.`).
+9. **Send the generated link to `tinysweet._.` via DM**.
 10. The verifier (`tinysweet._.`) opens the link and completes the verification for you.
 
 ---
@@ -191,7 +191,7 @@ Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi l
 6. Chọn phương thức xác minh từ dropdown.
 7. Nhấn **Generate verification link**.
 8. Link sẽ tự động được copy vào clipboard. Nếu không, nhấn **Copy**.
-9. **Gửi link vừa tạo cho `tinysweet_dev` qua DM** (sau khi liên hệ `tinysweet._.`).
+9. **Gửi link vừa tạo cho `tinysweet._.` qua DM**.
 10. Người xác minh (`tinysweet._.`) sẽ mở link và hoàn tất xác minh hộ bạn.
 
 ---
