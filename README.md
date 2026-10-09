@@ -1,20 +1,21 @@
 # k-ID Age Verification Bypass
 
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Support](https://img.shields.io/discord/1392413874204049518?style=for-the-badge&logo=discord&logoColor=white&label=Support&color=5865F2)](https://discord.gg/hqr6YW2MjJ)
+[![Support](https://img.shields.io/discord/1392413874204049518?style=for-the-badge&logo=discord&logoColor=white&label=Support&color=5865F2)](https://discord.gg/wkwsthag5D)
 [![Browser](https://img.shields.io/badge/Browser%20Console-000000?style=for-the-badge&logo=googlechrome&logoColor=white)](#usage)
 
 Discord k-ID Age Verification Bypass — generate a verification link directly from the Discord client and send it to the verifier to complete age verification on your behalf.
 
 <a href="https://ko-fi.com/tinysweet"><img src="https://storage.ko-fi.com/cdn/kofi2.png?v=3" width="140" alt="Support me on Ko-fi"></a>
 
-> **Pricing notice** — The free period has **ended**. Verification now costs **$2 per verification**.
+> **Contact update** — My main Discord account, `tinysweet_dev`, has been banned by Discord. Please add and contact my backup account: **`tinysweet._.`**.
+>
+> If you'd like free access, you can join the support server and participate in giveaways. If you need help, please join the server and ask there.
 >
 > **Payment methods:**
-> - **PayPal** — contact `tinysweet_dev` for details
-> - **Crypto:**
->   - **USDT (TRC20):** `TS9Ft751n51ayEoKeh5GPeBh8XNkDjMZxc`
->   - **SOL:** `ES1t6K2ZsMY5ZnhLKwpC4Fe4ruMW15ZHmJAqXSqTaBqv`
+> - **Discord:** `tinysweet._.` (backup account)
+> - **Support server:** https://discord.gg/wkwsthag5D
+> - **Free access:** Join the server for giveaways.
 
 ---
 
@@ -78,15 +79,16 @@ Chat screenshots of users who contacted and successfully completed age verificat
 
 This script hooks into Discord's internal webpack module registry from the browser console. It locates the k-ID age verification module, enumerates the available verification methods, and calls Discord's own API to generate a verification link — without going through the official UI flow.
 
-You generate the link on your own Discord account, then send it to the verifier (`tinysweet_dev`) who completes the verification for you.
+You generate the link on your own Discord account, then send it to the verifier (`tinysweet._.`) who completes the verification for you.
 
-> **Pricing notice:** The free period has **ended**. Verification now costs **$2 per verification**.
+> **Contact update:** My main Discord account, `tinysweet_dev`, has been banned by Discord. Please add and contact my backup account: **`tinysweet._.`**.
+>
+> If you'd like free access, you can join the support server and participate in giveaways. If you need help, please join the server and ask there.
 >
 > **Payment methods:**
-> - **PayPal** — contact `tinysweet_dev` for details
-> - **Crypto:**
->   - **USDT (TRC20):** `TS9Ft751n51ayEoKeh5GPeBh8XNkDjMZxc`
->   - **SOL:** `ES1t6K2ZsMY5ZnhLKwpC4Fe4ruMW15ZHmJAqXSqTaBqv`
+> - **Discord:** `tinysweet._.` (backup account)
+> - **Support server:** https://discord.gg/wkwsthag5D
+> - **Free access:** Join the server for giveaways.
 
 ## Requirements
 
@@ -111,8 +113,8 @@ You generate the link on your own Discord account, then send it to the verifier 
 6. Select a verification method from the dropdown.
 7. Click **Generate verification link**.
 8. The link is auto-copied to your clipboard. If not, click **Copy**.
-9. **Send the generated link to `tinysweet_dev` via DM** (after paying $2 via PayPal, USDT-TRC20, or SOL).
-10. The verifier (`tinysweet_dev`) opens the link and completes the verification for you.
+9. **Send the generated link to `tinysweet_dev` via DM** (after contacting `tinysweet._.`).
+10. The verifier (`tinysweet._.`) opens the link and completes the verification for you.
 
 ---
 
@@ -156,7 +158,7 @@ The list is fetched live from Discord when the script loads. The table above is 
 
 Script này hook vào webpack module registry nội bộ của Discord client từ console trình duyệt. Nó tìm module xử lý age verification của k-ID, liệt kê các phương thức xác minh có sẵn, và gọi API nội bộ của Discord để tạo verification link — không cần đi qua UI chính thức.
 
-Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi link đó cho người xác minh (`tinysweet_dev`) để họ hoàn tất xác minh hộ bạn.
+Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi link đó cho người xác minh (`tinysweet._.`) để họ hoàn tất xác minh hộ bạn.
 
 > **Thông báo giá:** Chương trình miễn phí đã **kết thúc**. Hiện cần trả phí **$2 / lần** để được xác minh.
 >
@@ -189,8 +191,8 @@ Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi l
 6. Chọn phương thức xác minh từ dropdown.
 7. Nhấn **Generate verification link**.
 8. Link sẽ tự động được copy vào clipboard. Nếu không, nhấn **Copy**.
-9. **Gửi link vừa tạo cho `tinysweet_dev` qua DM** (sau khi thanh toán $2 qua PayPal, USDT-TRC20 hoặc SOL).
-10. Người xác minh (`tinysweet_dev`) sẽ mở link và hoàn tất xác minh hộ bạn.
+9. **Gửi link vừa tạo cho `tinysweet_dev` qua DM** (sau khi liên hệ `tinysweet._.`).
+10. Người xác minh (`tinysweet._.`) sẽ mở link và hoàn tất xác minh hộ bạn.
 
 ---
 
