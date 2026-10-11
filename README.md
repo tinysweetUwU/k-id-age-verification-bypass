@@ -1,21 +1,21 @@
 # k-ID Age Verification Bypass
 
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Support](https://img.shields.io/discord/1557983883704795217?style=for-the-badge&logo=discord&logoColor=white&label=Support&color=5865F2)](https://discord.gg/wkwsthag5D)
 [![Browser](https://img.shields.io/badge/Browser%20Console-000000?style=for-the-badge&logo=googlechrome&logoColor=white)](#usage)
 
-Discord k-ID Age Verification Bypass — generate a verification link directly from the Discord client and send it to the verifier to complete age verification on your behalf.
+I built a Discord bot that completes k-ID age verification for you. Join the support server, grab a key (buy one or win one in giveaways), generate your verification link, and let the bot handle the rest.
 
 <a href="https://ko-fi.com/tinysweet"><img src="https://storage.ko-fi.com/cdn/kofi2.png?v=3" width="140" alt="Support me on Ko-fi"></a>
 
-> **Contact update** — My main Discord account, `tinysweet_dev`, has been banned by Discord. Please add and contact my backup account: **`tinysweet._.`**.
+> **Contact** — My main Discord account, `tinysweet_dev`, was banned by Discord. Add my backup: **`tinysweet._.`**.
 >
-> If you'd like free access, you can join the support server and participate in giveaways. If you need help, please join the server and ask there.
+> **How to get a key:**
+> - **Buy** — join the support server and DM `tinysweet._.` to purchase.
+> - **Free** — join the server and participate in **giveaways**.
 >
-> **Payment methods:**
-> - **Discord:** `tinysweet._.` (backup account)
+> **Links:**
 > - **Support server:** https://discord.gg/wkwsthag5D
-> - **Free access:** Join the server for giveaways.
+> - **Contact:** `tinysweet._.` (backup account)
 
 ---
 
@@ -72,23 +72,26 @@ Chat screenshots of users who contacted and successfully completed age verificat
 
 ---
 
+## How it works
+
+1. **Join the server** — https://discord.gg/wkwsthag5D
+2. **Get a key** — buy one via DM to `tinysweet._.` **or** win one in giveaways.
+3. **Redeem it** — in the server, run `/redeem` with your key. The key binds to your Discord account.
+4. **Generate your link** — follow the [Usage](#usage) section below to create a verification link from your own account.
+5. **Verify** — run `/verify` with your link. The bot tries a card, and tells you **Verified — check the account.** If it fails, press **Try another card**.
+
+**Key plans:** `trial` (a few free verifies) · `monthly` (30 days) · `lifetime` (never expires) · `custom` (set days manually).
+
+---
+
 <details>
 <summary><b>🇬🇧 English</b></summary>
 
 ## What it does
 
-This script hooks into Discord's internal webpack module registry from the browser console. It locates the k-ID age verification module, enumerates the available verification methods, and calls Discord's own API to generate a verification link — without going through the official UI flow.
+The bot completes k-ID age verification on your behalf. You generate a verification link on your own Discord account (see [Usage](#usage)), then the bot submits it and completes the check — without you touching a card.
 
-You generate the link on your own Discord account, then send it to the verifier (`tinysweet._.`) who completes the verification for you.
-
-> **Contact update:** My main Discord account, `tinysweet_dev`, has been banned by Discord. Please add and contact my backup account: **`tinysweet._.`**.
->
-> If you'd like free access, you can join the support server and participate in giveaways. If you need help, please join the server and ask there.
->
-> **Payment methods:**
-> - **Discord:** `tinysweet._.` (backup account)
-> - **Support server:** https://discord.gg/wkwsthag5D
-> - **Free access:** Join the server for giveaways.
+> **Get a key:** join the support server and DM `tinysweet._.` to buy, **or** join **giveaways** for free access.
 
 ## Requirements
 
@@ -113,8 +116,8 @@ You generate the link on your own Discord account, then send it to the verifier 
 6. Select a verification method from the dropdown.
 7. Click **Generate verification link**.
 8. The link is auto-copied to your clipboard. If not, click **Copy**.
-9. **Send the generated link to `tinysweet._.` via DM**.
-10. The verifier (`tinysweet._.`) opens the link and completes the verification for you.
+9. In the support server, run `/redeem` with your key (once), then `/verify` with your link.
+10. The bot completes the verification — **Verified, check the account.**
 
 ---
 
@@ -129,6 +132,8 @@ You generate the link on your own Discord account, then send it to the verifier 
 
 The list is fetched live from Discord when the script loads. The table above is the fallback if module discovery fails.
 
+> **Note:** the bot currently supports **credit-card** links. Other methods will report *Unsupported method*.
+
 ## How it works
 
 - `webpackChunkdiscord_app.push(...)` grabs a reference to the webpack module registry.
@@ -136,6 +141,7 @@ The list is fetched live from Discord when the script loads. The table above is 
 - Module `295972` exports the link generator (`en`).
 - `en(method, vendor)` calls Discord's internal endpoint and resolves to an object containing `verification_webview_url`.
 - The UI is injected into a shadow DOM host so Discord's styles don't bleed in.
+- The bot submits the link server-side and polls k-ID's status endpoint for the result.
 
 ## Troubleshooting
 
@@ -146,6 +152,8 @@ The list is fetched live from Discord when the script loads. The table above is 
 | Paste is blocked in console          | Type `allow pasting` first (see step 3).                            |
 | Icon doesn't appear                  | The script may have thrown. Check the console for errors.           |
 | Link opens but verification fails    | The link is session-bound. Generate and send from the same account you want verified. |
+| Bot says "No active key"             | Run `/redeem` with your key first, or ask `tinysweet._.` for one.   |
+| Bot says "Link expired"              | Generate a fresh link and `/verify` again.                          |
 
 </details>
 
@@ -156,17 +164,9 @@ The list is fetched live from Discord when the script loads. The table above is 
 
 ## Chức năng
 
-Script này hook vào webpack module registry nội bộ của Discord client từ console trình duyệt. Nó tìm module xử lý age verification của k-ID, liệt kê các phương thức xác minh có sẵn, và gọi API nội bộ của Discord để tạo verification link — không cần đi qua UI chính thức.
+Bot sẽ hoàn tất xác minh tuổi k-ID hộ bạn. Bạn tự tạo verification link trên chính tài khoản của mình (xem [Cách sử dụng](#cách-sử-dụng)), sau đó bot submit link và hoàn tất xác minh — bạn không cần động vào thẻ.
 
-Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi link đó cho người xác minh (`tinysweet._.`) để họ hoàn tất xác minh hộ bạn.
-
-> **Thông báo giá:** Chương trình miễn phí đã **kết thúc**. Hiện cần trả phí **$2 / lần** để được xác minh.
->
-> **Phương thức thanh toán:**
-> - **PayPal** — liên hệ `tinysweet_dev` để biết chi tiết
-> - **Crypto:**
->   - **USDT (TRC20):** `TS9Ft751n51ayEoKeh5GPeBh8XNkDjMZxc`
->   - **SOL:** `ES1t6K2ZsMY5ZnhLKwpC4Fe4ruMW15ZHmJAqXSqTaBqv`
+> **Lấy key:** vào server hỗ trợ và DM `tinysweet._.` để mua, **hoặc** tham gia **giveaway** để nhận miễn phí.
 
 ## Yêu cầu
 
@@ -174,7 +174,7 @@ Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi l
 - Chrome / Edge / Brave / bất kỳ trình duyệt nhân Chromium nào (Firefox cũng chạy được, UI khác chút)
 - Quyền truy cập Console (F12)
 
-## Cách sử dụng
+## <a id="cách-sử-dụng"></a>Cách sử dụng
 
 1. Mở Discord trên trình duyệt và đăng nhập vào tài khoản bạn muốn xác minh.
 2. Nhấn **F12** để mở DevTools → chuyển sang tab **Console**.
@@ -191,8 +191,8 @@ Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi l
 6. Chọn phương thức xác minh từ dropdown.
 7. Nhấn **Generate verification link**.
 8. Link sẽ tự động được copy vào clipboard. Nếu không, nhấn **Copy**.
-9. **Gửi link vừa tạo cho `tinysweet._.` qua DM**.
-10. Người xác minh (`tinysweet._.`) sẽ mở link và hoàn tất xác minh hộ bạn.
+9. Trong server hỗ trợ, chạy `/redeem` với key của bạn (1 lần duy nhất), rồi `/verify` kèm link.
+10. Bot sẽ hoàn tất xác minh — **Verified, check tài khoản.**
 
 ---
 
@@ -201,11 +201,13 @@ Bạn tạo link trên chính tài khoản Discord của mình, sau đó gửi l
 | Method ID | Tên          | Vendor | Nhà cung cấp       |
 |-----------|--------------|--------|--------------------|
 | 5         | Credit Card  | 1      | Provided by k-ID   |
-| 3         | Video Selfie | 1      | Provided by k-ID   |
 | 1         | ID Scan      | 1      | Provided by k-ID   |
+| 3         | Video Selfie | 1      | Provided by k-ID   |
 | 10        | AgeKey       | 1      | Provided by k-ID   |
 
 Danh sách được fetch trực tiếp từ Discord khi script load. Bảng trên là fallback nếu module discovery thất bại.
+
+> **Lưu ý:** bot hiện chỉ hỗ trợ link **credit-card**. Các method khác sẽ báo *Unsupported method*.
 
 ## Cách hoạt động
 
@@ -214,6 +216,7 @@ Danh sách được fetch trực tiếp từ Discord khi script load. Bảng tr�
 - Module `295972` export hàm tạo link (`en`).
 - `en(method, vendor)` gọi endpoint nội bộ của Discord và trả về object chứa `verification_webview_url`.
 - UI được inject vào shadow DOM host để style của Discord không ảnh hưởng.
+- Bot submit link phía server và poll status endpoint của k-ID để lấy kết quả.
 
 ## Xử lý sự cố
 
@@ -224,6 +227,8 @@ Danh sách được fetch trực tiếp từ Discord khi script load. Bảng tr�
 | Console chặn paste                   | Gõ `allow pasting` trước (xem bước 3).                              |
 | Icon không xuất hiện                 | Script có thể đã throw. Kiểm tra console để xem lỗi.                |
 | Link mở được nhưng verify thất bại   | Link gắn với session. Generate và gửi từ cùng tài khoản bạn muốn xác minh. |
+| Bot báo "No active key"              | Chạy `/redeem` với key trước, hoặc xin key từ `tinysweet._.`.       |
+| Bot báo "Link expired"               | Tạo link mới và `/verify` lại.                                      |
 
 </details>
 
