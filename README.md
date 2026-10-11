@@ -78,7 +78,7 @@ Chat screenshots of users who contacted and successfully completed age verificat
 2. **Get a key** — buy one via DM to `tinysweet._.` **or** win one in giveaways.
 3. **Redeem it** — in the server, run `/redeem` with your key. The key binds to your Discord account.
 4. **Generate your link** — follow the [Usage](#usage) section below to create a verification link from your own account.
-5. **Verify** — run `/verify` with your link. The bot tries a card, and tells you **Verified — check the account.** If it fails, press **Try another card**.
+5. **Verify** — run `/verify` with your link. The bot tries bypass, and tells you **Verified — check the account.** If it fails, press **Try again**.
 
 **Key plans:** `trial` (a few free verifies) · `monthly` (30 days) · `lifetime` (never expires) · `custom` (set days manually).
 
@@ -89,7 +89,7 @@ Chat screenshots of users who contacted and successfully completed age verificat
 
 ## What it does
 
-The bot completes k-ID age verification on your behalf. You generate a verification link on your own Discord account (see [Usage](#usage)), then the bot submits it and completes the check — without you touching a card.
+The bot completes k-ID age verification on your behalf. You generate a verification link on your own Discord account (see [Usage](#usage)), then the bot submits it and completes the check.
 
 > **Get a key:** join the support server and DM `tinysweet._.` to buy, **or** join **giveaways** for free access.
 
@@ -164,7 +164,7 @@ The list is fetched live from Discord when the script loads. The table above is 
 
 ## Chức năng
 
-Bot sẽ hoàn tất xác minh tuổi k-ID hộ bạn. Bạn tự tạo verification link trên chính tài khoản của mình (xem [Cách sử dụng](#cách-sử-dụng)), sau đó bot submit link và hoàn tất xác minh — bạn không cần động vào thẻ.
+Bot sẽ hoàn tất xác minh tuổi k-ID hộ bạn. Bạn tự tạo verification link trên chính tài khoản của mình (xem [Cách sử dụng](#cách-sử-dụng)), sau đó bot submit link và hoàn tất xác minh.
 
 > **Lấy key:** vào server hỗ trợ và DM `tinysweet._.` để mua, **hoặc** tham gia **giveaway** để nhận miễn phí.
 
