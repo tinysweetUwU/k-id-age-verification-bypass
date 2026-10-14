@@ -25,12 +25,11 @@ I built a Discord bot that completes k-ID age verification for you. Join the sup
 4. **Generate a link** — follow [Usage](#usage) below on the account you want verified
 5. **Verify** — run `/verify` with your link. The bot completes the check and replies **Verified — check the account.** If it fails, press **Try again**.
 
-| Plan | Duration |
-| ---- | -------- |
-| `trial` | A few free verifies |
+| Plan | Details |
+| ---- | ------- |
+| `trial` | Limited uses (e.g. 1 or 3 verifies) |
 | `monthly` | 30 days |
 | `lifetime` | Never expires |
-| `custom` | Set days manually |
 
 > The bot currently supports **Credit Card** and **AgeKey** links. Other methods return *Unsupported method*.
 
