@@ -9,233 +9,144 @@ I built a Discord bot that completes k-ID age verification for you. Join the sup
 
 > **Contact** — My main Discord account, `tinysweet_dev`, was banned by Discord. Add my backup: **`tinysweet._.`**.
 >
-> **How to get a key:**
-> - **Buy** — join the support server and DM `tinysweet._.` to purchase.
-> - **Free** — join the server and participate in **giveaways**.
+> **How to get a key**
+> - **Buy** — join the support server and DM `tinysweet._.` to purchase
+> - **Free** — join the server and participate in **giveaways**
 >
-> **Links:**
-> - **Support server:** https://discord.gg/wkwsthag5D
-> - **Contact:** `tinysweet._.` (backup account)
-
----
-
-<details>
-<summary><b>Proof — Completed verifications</b></summary>
-
-Chat screenshots of users who contacted and successfully completed age verification:
-
-<img src="./proof/Screenshot-04.png" width="600">
-
-<img src="./proof/Screenshot-05.png" width="600">
-
-<img src="./proof/Screenshot-06.png" width="600">
-
-<img src="./proof/Screenshot-07.png" width="600">
-
-<img src="./proof/Screenshot-08.png" width="600">
-
-<img src="./proof/Screenshot-09.png" width="600">
-
-<img src="./proof/Screenshot-10.png" width="600">
-
-<img src="./proof/Screenshot-11.png" width="600">
-
-<img src="./proof/Screenshot-12.png" width="600">
-
-<img src="./proof/Screenshot-13.png" width="600">
-
-<img src="./proof/Screenshot-14.png" width="600">
-
-<img src="./proof/Screenshot-15.png" width="600">
-
-<img src="./proof/Screenshot-16.png" width="600">
-
-<img src="./proof/Screenshot-17.png" width="600">
-
-<img src="./proof/Screenshot-18.png" width="600">
-
-<img src="./proof/Screenshot-19.png" width="600">
-
-<img src="./proof/Screenshot-20.png" width="600">
-
-<img src="./proof/Screenshot-21.png" width="600">
-
-<img src="./proof/Screenshot-22.png" width="600">
-
-<img src="./proof/Screenshot-23.png" width="600">
-
-<img src="./proof/Screenshot-24.png" width="600">
-
-<img src="./proof/Screenshot-25.png" width="600">
-
-</details>
+> **Support server:** https://discord.gg/wkwsthag5D
 
 ---
 
 ## How it works
 
 1. **Join the server** — https://discord.gg/wkwsthag5D
-2. **Get a key** — buy one via DM to `tinysweet._.` **or** win one in giveaways.
-3. **Redeem it** — in the server, run `/redeem` with your key. The key binds to your Discord account.
-4. **Generate your link** — follow the [Usage](#usage) section below to create a verification link from your own account.
-5. **Verify** — run `/verify` with your link. The bot tries bypass, and tells you **Verified — check the account.** If it fails, press **Try again**.
+2. **Get a key** — buy via DM to `tinysweet._.` or win one in giveaways
+3. **Redeem** — run `/redeem` with your key (binds to your Discord account)
+4. **Generate a link** — follow [Usage](#usage) below on the account you want verified
+5. **Verify** — run `/verify` with your link. The bot completes the check and replies **Verified — check the account.** If it fails, press **Try again**.
 
-**Key plans:** `trial` (a few free verifies) · `monthly` (30 days) · `lifetime` (never expires) · `custom` (set days manually).
+**Key plans:** `trial` · `monthly` (30 days) · `lifetime` · `custom`
+
+> The bot currently supports **credit-card** links only. Other methods return *Unsupported method*.
 
 ---
 
 <details>
-<summary><b>🇬🇧 English</b></summary>
+<summary><b>English</b></summary>
 
-## What it does
+### Requirements
 
-The bot completes k-ID age verification on your behalf. You generate a verification link on your own Discord account (see [Usage](#usage)), then the bot submits it and completes the check.
-
-> **Get a key:** join the support server and DM `tinysweet._.` to buy, **or** join **giveaways** for free access.
-
-## Requirements
-
-- Discord web client open — [https://discord.com/app](https://discord.com/app) or [https://discord.com/channels/@me](https://discord.com/channels/@me)
-- Desktop Chrome / Edge / Brave / any Chromium-based browser (Firefox works too, minor UI differences)
+- Discord web — [discord.com/app](https://discord.com/app) or [discord.com/channels/@me](https://discord.com/channels/@me)
+- Chrome / Edge / Brave / any Chromium browser (Firefox works with minor UI differences)
 - Console access (F12)
 
-## Usage
+### Usage
 
 1. Open Discord in your browser and log in to the account you want verified.
-2. Press **F12** to open DevTools → go to the **Console** tab.
-3. **Allow pasting** — Chromium blocks pasting into the console by default. Type this and press Enter:
+2. Press **F12** → open the **Console** tab.
+3. Type `allow pasting` and press Enter (Chromium blocks paste by default).
+4. Paste the **entire script** (collapsible at the bottom) and press Enter.
+5. Click the floating blue icon → open the panel.
+6. Select a verification method → click **Generate verification link**.
+7. The link is auto-copied. If not, click **Copy**.
+8. In the support server: `/redeem <key>` (once), then `/verify <link>`.
+9. Wait for **Verified — check the account.**
 
-   ```
-   allow pasting
-   ```
+### Verification methods
 
-   Once the warning disappears, paste is enabled for this tab.
+| Method ID | Title        | Vendor | Provider         |
+| --------- | ------------ | ------ | ---------------- |
+| 5         | Credit Card  | 1      | Provided by k-ID |
+| 3         | Video Selfie | 1      | Provided by k-ID |
+| 1         | ID Scan      | 1      | Provided by k-ID |
+| 10        | AgeKey       | 1      | Provided by k-ID |
 
-4. Paste the **entire script** (see collapsible at the bottom of this README) into the console and press Enter.
-5. A floating blue icon appears in the bottom-right corner of the page. Click it to open the panel.
-6. Select a verification method from the dropdown.
-7. Click **Generate verification link**.
-8. The link is auto-copied to your clipboard. If not, click **Copy**.
-9. In the support server, run `/redeem` with your key (once), then `/verify` with your link.
-10. The bot completes the verification — **Verified, check the account.**
+The list is fetched live from Discord. The table above is the fallback if module discovery fails.
 
----
+### Technical notes
 
-## Verification methods
+- `webpackChunkdiscord_app.push(...)` grabs the webpack module registry
+- Module `482876` exports the method list (`J`)
+- Module `295972` exports the link generator (`en`)
+- `en(method, vendor)` returns an object with `verification_webview_url`
+- UI is injected into a shadow DOM so Discord styles do not leak in
+- The bot submits the link server-side and polls k-ID status
 
-| Method ID | Title        | Vendor | Provider           |
-|-----------|--------------|--------|--------------------|
-| 5         | Credit Card  | 1      | Provided by k-ID   |
-| 3         | Video Selfie | 1      | Provided by k-ID   |
-| 1         | ID Scan      | 1      | Provided by k-ID   |
-| 10        | AgeKey       | 1      | Provided by k-ID   |
+### Troubleshooting
 
-The list is fetched live from Discord when the script loads. The table above is the fallback if module discovery fails.
-
-> **Note:** the bot currently supports **credit-card** links. Other methods will report *Unsupported method*.
-
-## How it works
-
-- `webpackChunkdiscord_app.push(...)` grabs a reference to the webpack module registry.
-- Module `482876` exports the method list (`J`).
-- Module `295972` exports the link generator (`en`).
-- `en(method, vendor)` calls Discord's internal endpoint and resolves to an object containing `verification_webview_url`.
-- The UI is injected into a shadow DOM host so Discord's styles don't bleed in.
-- The bot submits the link server-side and polls k-ID's status endpoint for the result.
-
-## Troubleshooting
-
-| Problem                              | Fix                                                                 |
-|--------------------------------------|---------------------------------------------------------------------|
-| "Verification module unavailable"    | Reload the page and re-run the script. Discord rotated the module ID. |
-| "Request timed out after 20 seconds" | Discord API slow or blocked. Check the network tab.                 |
-| Paste is blocked in console          | Type `allow pasting` first (see step 3).                            |
-| Icon doesn't appear                  | The script may have thrown. Check the console for errors.           |
-| Link opens but verification fails    | The link is session-bound. Generate and send from the same account you want verified. |
-| Bot says "No active key"             | Run `/redeem` with your key first, or ask `tinysweet._.` for one.   |
-| Bot says "Link expired"              | Generate a fresh link and `/verify` again.                          |
+| Problem | Fix |
+| ------- | --- |
+| Verification module unavailable | Reload the page and re-run the script. Discord rotated the module ID. |
+| Request timed out after 20 seconds | Discord API slow or blocked. Check the Network tab. |
+| Paste blocked in console | Type `allow pasting` first (step 3). |
+| Icon does not appear | Script may have thrown. Check the console for errors. |
+| Link opens but verification fails | Link is session-bound. Generate from the same account you want verified. |
+| Bot says "No active key" | Run `/redeem` first, or ask `tinysweet._.` for a key. |
+| Bot says "Link expired" | Generate a fresh link and `/verify` again. |
 
 </details>
 
 ---
 
 <details>
-<summary><b>🇻🇳 Tiếng Việt</b></summary>
+<summary><b>Tiếng Việt</b></summary>
 
-## Chức năng
+### Yêu cầu
 
-Bot sẽ hoàn tất xác minh tuổi k-ID hộ bạn. Bạn tự tạo verification link trên chính tài khoản của mình (xem [Cách sử dụng](#cách-sử-dụng)), sau đó bot submit link và hoàn tất xác minh.
+- Discord web — [discord.com/app](https://discord.com/app) hoặc [discord.com/channels/@me](https://discord.com/channels/@me)
+- Chrome / Edge / Brave / trình duyệt Chromium (Firefox cũng được, UI hơi khác)
+- Console (F12)
 
-> **Lấy key:** vào server hỗ trợ và DM `tinysweet._.` để mua, **hoặc** tham gia **giveaway** để nhận miễn phí.
+### Cách sử dụng
 
-## Yêu cầu
+1. Mở Discord trên trình duyệt, đăng nhập tài khoản cần xác minh.
+2. Nhấn **F12** → tab **Console**.
+3. Gõ `allow pasting` rồi Enter (Chromium chặn paste mặc định).
+4. Paste **toàn bộ script** (phần thu gọn cuối README) rồi Enter.
+5. Click icon xanh nổi → mở panel.
+6. Chọn phương thức → **Generate verification link**.
+7. Link tự copy. Nếu không, nhấn **Copy**.
+8. Trong server: `/redeem <key>` (1 lần), rồi `/verify <link>`.
+9. Đợi bot báo **Verified — check tài khoản.**
 
-- Discord web đang mở — [https://discord.com/app](https://discord.com/app) hoặc [https://discord.com/channels/@me](https://discord.com/channels/@me)
-- Chrome / Edge / Brave / bất kỳ trình duyệt nhân Chromium nào (Firefox cũng chạy được, UI khác chút)
-- Quyền truy cập Console (F12)
+### Phương thức xác minh
 
-## <a id="cách-sử-dụng"></a>Cách sử dụng
+| Method ID | Tên          | Vendor | Nhà cung cấp     |
+| --------- | ------------ | ------ | ---------------- |
+| 5         | Credit Card  | 1      | Provided by k-ID |
+| 3         | Video Selfie | 1      | Provided by k-ID |
+| 1         | ID Scan      | 1      | Provided by k-ID |
+| 10        | AgeKey       | 1      | Provided by k-ID |
 
-1. Mở Discord trên trình duyệt và đăng nhập vào tài khoản bạn muốn xác minh.
-2. Nhấn **F12** để mở DevTools → chuyển sang tab **Console**.
-3. **Allow pasting** — Chromium chặn paste vào console mặc định. Gõ dòng này rồi Enter:
+Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu không lấy được module.
 
-   ```
-   allow pasting
-   ```
+### Ghi chú kỹ thuật
 
-   Khi cảnh báo biến mất, paste đã được bật cho tab này.
+- `webpackChunkdiscord_app.push(...)` lấy webpack module registry
+- Module `482876` export danh sách method (`J`)
+- Module `295972` export hàm tạo link (`en`)
+- `en(method, vendor)` trả về object chứa `verification_webview_url`
+- UI inject vào shadow DOM để không bị style Discord ảnh hưởng
+- Bot submit link phía server và poll status của k-ID
 
-4. Paste **toàn bộ script** (xem phần thu gọn ở cuối README) vào console và nhấn Enter.
-5. Một icon xanh nổi xuất hiện ở góc phải dưới màn hình. Click vào để mở panel.
-6. Chọn phương thức xác minh từ dropdown.
-7. Nhấn **Generate verification link**.
-8. Link sẽ tự động được copy vào clipboard. Nếu không, nhấn **Copy**.
-9. Trong server hỗ trợ, chạy `/redeem` với key của bạn (1 lần duy nhất), rồi `/verify` kèm link.
-10. Bot sẽ hoàn tất xác minh — **Verified, check tài khoản.**
+### Xử lý sự cố
 
----
-
-## Các phương thức xác minh
-
-| Method ID | Tên          | Vendor | Nhà cung cấp       |
-|-----------|--------------|--------|--------------------|
-| 5         | Credit Card  | 1      | Provided by k-ID   |
-| 1         | ID Scan      | 1      | Provided by k-ID   |
-| 3         | Video Selfie | 1      | Provided by k-ID   |
-| 10        | AgeKey       | 1      | Provided by k-ID   |
-
-Danh sách được fetch trực tiếp từ Discord khi script load. Bảng trên là fallback nếu module discovery thất bại.
-
-> **Lưu ý:** bot hiện chỉ hỗ trợ link **credit-card**. Các method khác sẽ báo *Unsupported method*.
-
-## Cách hoạt động
-
-- `webpackChunkdiscord_app.push(...)` lấy reference tới webpack module registry.
-- Module `482876` export danh sách method (`J`).
-- Module `295972` export hàm tạo link (`en`).
-- `en(method, vendor)` gọi endpoint nội bộ của Discord và trả về object chứa `verification_webview_url`.
-- UI được inject vào shadow DOM host để style của Discord không ảnh hưởng.
-- Bot submit link phía server và poll status endpoint của k-ID để lấy kết quả.
-
-## Xử lý sự cố
-
-| Vấn đề                               | Cách khắc phục                                                      |
-|--------------------------------------|---------------------------------------------------------------------|
-| "Verification module unavailable"    | Reload trang và chạy lại script. Discord đã đổi module ID.          |
-| "Request timed out after 20 seconds" | API Discord chậm hoặc bị chặn. Kiểm tra tab Network.                |
-| Console chặn paste                   | Gõ `allow pasting` trước (xem bước 3).                              |
-| Icon không xuất hiện                 | Script có thể đã throw. Kiểm tra console để xem lỗi.                |
-| Link mở được nhưng verify thất bại   | Link gắn với session. Generate và gửi từ cùng tài khoản bạn muốn xác minh. |
-| Bot báo "No active key"              | Chạy `/redeem` với key trước, hoặc xin key từ `tinysweet._.`.       |
-| Bot báo "Link expired"               | Tạo link mới và `/verify` lại.                                      |
+| Vấn đề | Cách khắc phục |
+| ------ | -------------- |
+| Verification module unavailable | Reload trang và chạy lại script. Discord đã đổi module ID. |
+| Request timed out after 20 seconds | API Discord chậm hoặc bị chặn. Kiểm tra tab Network. |
+| Console chặn paste | Gõ `allow pasting` trước (bước 3). |
+| Icon không xuất hiện | Script có thể đã lỗi. Kiểm tra console. |
+| Link mở được nhưng verify thất bại | Link gắn với session. Generate từ đúng tài khoản cần xác minh. |
+| Bot báo "No active key" | Chạy `/redeem` trước, hoặc xin key từ `tinysweet._.`. |
+| Bot báo "Link expired" | Tạo link mới và `/verify` lại. |
 
 </details>
 
 ---
 
 <details>
-<summary><b>Full script / Toàn bộ script</b> — click to expand, then copy all</summary>
+<summary><b>Full script</b> — click to expand, then copy all</summary>
 
 ```js
 (() => {
@@ -452,11 +363,7 @@ Danh sách được fetch trực tiếp từ Discord khi script load. Bảng tr�
         if (show) clamp(panel);
     };
     const close = head.querySelector('#close');
-
-    close.addEventListener('pointerdown', e => {
-        e.stopPropagation();
-    });
-
+    close.addEventListener('pointerdown', e => { e.stopPropagation(); });
     close.addEventListener('click', e => {
         e.stopPropagation();
         panel.style.display = 'none';
