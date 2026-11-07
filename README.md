@@ -652,6 +652,3 @@ The list is fetched live from Discord. The table above is the fallback if module
     console.log('%c[Age Verification] Ready', 'color:#5865f2;font-weight:bold');
 })();
 ```
-```
-
-</details>
