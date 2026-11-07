@@ -51,20 +51,20 @@ Khi thành công bot sẽ trả lời **`success`**.
 ### Requirements
 
 - Discord Web: [discord.com/app](https://discord.com/app)
-- Chromium browser (Chrome / Edge / Brave) — Firefox cũng được
+- Chromium browser (Chrome / Edge / Brave) — Firefox also works
 - Console (F12)
 
 ### Usage
 
-1. Mở Discord trên trình duyệt và đăng nhập tài khoản cần verify
-2. Nhấn **F12** → tab **Console**
-3. Gõ `allow pasting` rồi Enter
-4. Paste toàn bộ script (phần cuối README) → Enter
-5. Click icon xanh nổi → mở panel
-6. Chọn phương thức → **Generate verification link**
-7. Link tự copy (nếu không thì bấm **Copy**)
-8. Trong server: `/redeem <key>` → `/verify <link>`
-9. Đợi bot trả lời **`success`**
+1. Open Discord in your browser and log in to the account you want verified
+2. Press **F12** → open the **Console** tab
+3. Type `allow pasting` and press Enter
+4. Paste the **entire script** (collapsible at the bottom) and press Enter
+5. Click the floating blue icon → open the panel
+6. Select a verification method → click **Generate verification link**
+7. The link is auto-copied. If not, click **Copy**
+8. In the support server: `/redeem <key>` → `/verify <link>`
+9. Wait for the bot to reply **`success`**
 
 ### Verification methods
 
@@ -75,34 +75,34 @@ Khi thành công bot sẽ trả lời **`success`**.
 | 1         | ID Scan      | 1      | Provided by k-ID |
 | 10        | AgeKey       | 1      | Provided by k-ID |
 
-Danh sách được fetch trực tiếp từ Discord. Bảng trên chỉ là fallback.
+The list is fetched live from Discord. The table above is the fallback if module discovery fails.
 
 ### Technical notes
 
-- `webpackChunkdiscord_app.push(...)` lấy webpack module registry
-- Module chứa method list & link generator được tìm động
-- `request(method, vendor)` trả về object có `verification_webview_url`
-- UI inject vào Shadow DOM để không bị style Discord đè
-- Bot submit link phía server và poll trạng thái k-ID
+- `webpackChunkdiscord_app.push(...)` grabs the webpack module registry
+- Module containing method list & link generator is found dynamically
+- `request(method, vendor)` returns an object with `verification_webview_url`
+- UI is injected into a Shadow DOM so Discord styles do not leak in
+- The bot submits the link server-side and polls k-ID status
 
 ### Troubleshooting
 
-| Problem                            | Fix                                                      |
-|------------------------------------|----------------------------------------------------------|
-| Verification module unavailable    | Reload trang rồi chạy lại script                         |
-| Request timed out after 20 seconds | API Discord chậm / bị chặn — kiểm tra tab Network        |
-| Paste blocked in console           | Gõ `allow pasting` trước                                 |
-| Icon không xuất hiện               | Script lỗi — xem console                                 |
-| Link mở được nhưng verify fail     | Link gắn với session → generate từ đúng tài khoản        |
-| Bot báo "No active key"            | Chạy `/redeem` trước                                     |
-| Bot báo "Link expired"             | Tạo link mới rồi `/verify` lại                           |
+| Problem                            | Fix                                                                      |
+|------------------------------------|--------------------------------------------------------------------------|
+| Verification module unavailable    | Reload the page and re-run the script. Discord rotated the module ID.    |
+| Request timed out after 20 seconds | Discord API slow or blocked. Check the Network tab.                      |
+| Paste blocked in console           | Type `allow pasting` first.                                              |
+| Icon does not appear               | Script may have thrown. Check the console for errors.                    |
+| Link opens but verification fails  | Link is session-bound. Generate from the same account you want verified. |
+| Bot says "No active key"           | Run `/redeem` first, or ask `tinysweet._.` for a key.                    |
+| Bot says "Link expired"            | Generate a fresh link and `/verify` again.                               |
 
 </details>
 
 ---
 
 <details>
-<summary><b>Tiếng Việt</b></summary>
+<summary><b>Tiếng Việt (chi tiết)</b></summary>
 
 ### Yêu cầu
 
@@ -110,7 +110,7 @@ Danh sách được fetch trực tiếp từ Discord. Bảng trên chỉ là fal
 - Trình duyệt Chromium (Chrome / Edge / Brave)
 - Console (F12)
 
-### Cách sử dụng
+### Cách sử dụng chi tiết
 
 1. Mở Discord trên trình duyệt, đăng nhập tài khoản cần xác minh
 2. Nhấn **F12** → tab **Console**
@@ -652,3 +652,6 @@ Danh sách được fetch trực tiếp từ Discord. Bảng trên chỉ là fal
     console.log('%c[Age Verification] Ready', 'color:#5865f2;font-weight:bold');
 })();
 ```
+```
+
+</details>
