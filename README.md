@@ -552,12 +552,15 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
         } catch (e) {
             console.error('[Age Verification]', e);
             const rawError = e?.message || String(e);
-            const requestUrl = e?.request?.url || e?.config?.url || e?.url || e?.path;
-            const requestMethod = e?.request?.method || e?.config?.method || e?.method || 'POST';
-            const statusCode = e?.status || e?.statusCode || e?.response?.status;
+            const requestUrl = e?.request?.url || e?.config?.url || e?.response?.url || e?.url || e?.path;
+            const requestMethod = e?.request?.method || e?.config?.method || e?.response?.config?.method || e?.method || 'POST';
+            const statusCode = e?.response?.status ?? e?.status ?? e?.statusCode;
+            const cleanError = rawError
+                .replace(/(?:GET|POST|PUT|PATCH|DELETE)\\s+\\/age-verification\\/verify\\/v\\w+\\s*\\[\\d{3}\\]\\s*:?\\s*/i, '')
+                .trim();
             const detail = requestUrl
-                ? `${requestMethod.toUpperCase()} ${requestUrl}${statusCode ? ` [${statusCode}]` : ''} — ${rawError}`
-                : rawError;
+                ? `${requestMethod.toUpperCase()} ${requestUrl}${statusCode != null ? ` [${statusCode}]` : ''}${cleanError ? ` — ${cleanError}` : ''}`
+                : rawError.replace(/\\/age-verification\\/verify\\/vxxx/gi, requestUrl || '');
             setStatus(detail, 'err');
             genBtn.classList.remove('success');
             genBtn.classList.add('error');
@@ -574,11 +577,11 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
         if (!urlInput.value) { setStatus('No verification link', 'err'); return; }
         try {
             await navigator.clipboard.writeText(urlInput.value);
-            setStatus('Copied to clipboard ✓', 'ok');
+            setStatus('Copied to clipboard', 'ok');
         } catch {
             urlInput.select();
             document.execCommand('copy');
-            setStatus('Copied to clipboard ✓', 'ok');
+            setStatus('Copied to clipboard', 'ok');
         }
     };
 
