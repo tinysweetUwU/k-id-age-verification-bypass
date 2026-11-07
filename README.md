@@ -2,36 +2,46 @@
 
 [![Support](https://img.shields.io/discord/1557983883704795217?style=for-the-badge&logo=discord&logoColor=white&label=Support&color=5865F2)](https://discord.gg/wkwsthag5D)
 [![Browser](https://img.shields.io/badge/Browser%20Console-000000?style=for-the-badge&logo=googlechrome&logoColor=white)](#usage)
+[![Status](https://img.shields.io/badge/Status-Working-success?style=for-the-badge)](https://discord.gg/wkwsthag5D)
 
-I built a Discord bot that completes k-ID age verification for you. Join the support server, grab a key (buy one or win one in giveaways), generate your verification link, and let the bot handle the rest.
+> Discord bot tự động hoàn thành **k-ID Age Verification** cho bạn.
 
-<a href="https://ko-fi.com/tinysweet"><img src="https://storage.ko-fi.com/cdn/kofi2.png?v=3" width="140" alt="Support me on Ko-fi"></a>
+Join server → lấy key → generate link → bot verify giúp.  
+Khi thành công bot sẽ trả lời **`success`**.
 
-> **Contact** — My main Discord account, `tinysweet_dev`, was banned by Discord. Add my backup: **`tinysweet._.`**.
->
-> **How to get a key**
-> - **Buy** — join the support server and DM `tinysweet._.` to purchase
-> - **Free** — join the server and participate in **giveaways**
->
-> **Support server:** https://discord.gg/wkwsthag5D
+<a href="https://ko-fi.com/tinysweet"><img src="https://storage.ko-fi.com/cdn/kofi2.png?v=3" width="145" alt="Support me on Ko-fi"></a>
 
 ---
 
-## How it works
+### Contact & Key
 
-1. **Join the server** — https://discord.gg/wkwsthag5D
-2. **Get a key** — buy via DM to `tinysweet._.` or win one in giveaways
-3. **Redeem** — run `/redeem` with your key (binds to your Discord account)
-4. **Generate a link** — follow [Usage](#usage) below on the account you want verified
-5. **Verify** — run `/verify` with your link. The bot completes the check and replies **Verified — check the account.** If it fails, press **Try again**.
+- **Main Discord** `tinysweet_dev` đã bị ban → dùng backup: **`tinysweet._.`**
+- **Mua key**: vào server rồi DM `tinysweet._.`
+- **Lấy key free**: tham gia **giveaways** trong server
 
-| Plan | Details |
-| ---- | ------- |
-| `trial` | Limited uses (e.g. 1 or 3 verifies) |
-| `monthly` | 30 days |
-| `lifetime` | Never expires |
+**Support server:** [https://discord.gg/wkwsthag5D](https://discord.gg/wkwsthag5D)
 
-> The bot currently supports **Credit Card** and **AgeKey** links. Other methods return *Unsupported method*.
+---
+
+## Cách hoạt động
+
+1. Join server → [https://discord.gg/wkwsthag5D](https://discord.gg/wkwsthag5D)
+2. Lấy key (mua hoặc win giveaway)
+3. `/redeem <key>` (bind key vào tài khoản Discord)
+4. Dùng script bên dưới để **Generate verification link**
+5. Chạy `/verify <link>`
+6. Bot trả lời **`success`** → kiểm tra lại tài khoản
+
+### Gói hiện có
+
+| Plan       | Chi tiết                          |
+|------------|-----------------------------------|
+| `trial`    | Số lần verify giới hạn (1–3 lần)  |
+| `monthly`  | 30 ngày                           |
+| `lifetime` | Vĩnh viễn                         |
+
+> Hiện bot hỗ trợ **Credit Card** và **AgeKey**.  
+> Các phương thức khác sẽ báo `Unsupported method`.
 
 ---
 
@@ -40,53 +50,52 @@ I built a Discord bot that completes k-ID age verification for you. Join the sup
 
 ### Requirements
 
-- Discord web — [discord.com/app](https://discord.com/app) or [discord.com/channels/@me](https://discord.com/channels/@me)
-- Chrome / Edge / Brave / any Chromium browser (Firefox works with minor UI differences)
-- Console access (F12)
+- Discord Web: [discord.com/app](https://discord.com/app)
+- Chromium browser (Chrome / Edge / Brave) — Firefox cũng được
+- Console (F12)
 
 ### Usage
 
-1. Open Discord in your browser and log in to the account you want verified.
-2. Press **F12** → open the **Console** tab.
-3. Type `allow pasting` and press Enter (Chromium blocks paste by default).
-4. Paste the **entire script** (collapsible at the bottom) and press Enter.
-5. Click the floating blue icon → open the panel.
-6. Select a verification method → click **Generate verification link**.
-7. The link is auto-copied. If not, click **Copy**.
-8. In the support server: `/redeem <key>` (once), then `/verify <link>`.
-9. Wait for **Verified — check the account.**
+1. Mở Discord trên trình duyệt và đăng nhập tài khoản cần verify
+2. Nhấn **F12** → tab **Console**
+3. Gõ `allow pasting` rồi Enter
+4. Paste toàn bộ script (phần cuối README) → Enter
+5. Click icon xanh nổi → mở panel
+6. Chọn phương thức → **Generate verification link**
+7. Link tự copy (nếu không thì bấm **Copy**)
+8. Trong server: `/redeem <key>` → `/verify <link>`
+9. Đợi bot trả lời **`success`**
 
 ### Verification methods
 
 | Method ID | Title        | Vendor | Provider         |
-| --------- | ------------ | ------ | ---------------- |
+|-----------|--------------|--------|------------------|
 | 5         | Credit Card  | 1      | Provided by k-ID |
 | 3         | Video Selfie | 1      | Provided by k-ID |
 | 1         | ID Scan      | 1      | Provided by k-ID |
 | 10        | AgeKey       | 1      | Provided by k-ID |
 
-The list is fetched live from Discord. The table above is the fallback if module discovery fails.
+Danh sách được fetch trực tiếp từ Discord. Bảng trên chỉ là fallback.
 
 ### Technical notes
 
-- `webpackChunkdiscord_app.push(...)` grabs the webpack module registry
-- Module `482876` exports the method list (`J`)
-- Module `295972` exports the link generator (`en`)
-- `en(method, vendor)` returns an object with `verification_webview_url`
-- UI is injected into a shadow DOM so Discord styles do not leak in
-- The bot submits the link server-side and polls k-ID status
+- `webpackChunkdiscord_app.push(...)` lấy webpack module registry
+- Module chứa method list & link generator được tìm động
+- `request(method, vendor)` trả về object có `verification_webview_url`
+- UI inject vào Shadow DOM để không bị style Discord đè
+- Bot submit link phía server và poll trạng thái k-ID
 
 ### Troubleshooting
 
-| Problem | Fix |
-| ------- | --- |
-| Verification module unavailable | Reload the page and re-run the script. Discord rotated the module ID. |
-| Request timed out after 20 seconds | Discord API slow or blocked. Check the Network tab. |
-| Paste blocked in console | Type `allow pasting` first (step 3). |
-| Icon does not appear | Script may have thrown. Check the console for errors. |
-| Link opens but verification fails | Link is session-bound. Generate from the same account you want verified. |
-| Bot says "No active key" | Run `/redeem` first, or ask `tinysweet._.` for a key. |
-| Bot says "Link expired" | Generate a fresh link and `/verify` again. |
+| Problem                            | Fix                                                      |
+|------------------------------------|----------------------------------------------------------|
+| Verification module unavailable    | Reload trang rồi chạy lại script                         |
+| Request timed out after 20 seconds | API Discord chậm / bị chặn — kiểm tra tab Network        |
+| Paste blocked in console           | Gõ `allow pasting` trước                                 |
+| Icon không xuất hiện               | Script lỗi — xem console                                 |
+| Link mở được nhưng verify fail     | Link gắn với session → generate từ đúng tài khoản        |
+| Bot báo "No active key"            | Chạy `/redeem` trước                                     |
+| Bot báo "Link expired"             | Tạo link mới rồi `/verify` lại                           |
 
 </details>
 
@@ -97,60 +106,55 @@ The list is fetched live from Discord. The table above is the fallback if module
 
 ### Yêu cầu
 
-- Discord web — [discord.com/app](https://discord.com/app) hoặc [discord.com/channels/@me](https://discord.com/channels/@me)
-- Chrome / Edge / Brave / trình duyệt Chromium (Firefox cũng được, UI hơi khác)
+- Discord Web: [discord.com/app](https://discord.com/app)
+- Trình duyệt Chromium (Chrome / Edge / Brave)
 - Console (F12)
 
 ### Cách sử dụng
 
-1. Mở Discord trên trình duyệt, đăng nhập tài khoản cần xác minh.
-2. Nhấn **F12** → tab **Console**.
-3. Gõ `allow pasting` rồi Enter (Chromium chặn paste mặc định).
-4. Paste **toàn bộ script** (phần thu gọn cuối README) rồi Enter.
-5. Click icon xanh nổi → mở panel.
-6. Chọn phương thức → **Generate verification link**.
-7. Link tự copy. Nếu không, nhấn **Copy**.
-8. Trong server: `/redeem <key>` (1 lần), rồi `/verify <link>`.
-9. Đợi bot báo **Verified — check tài khoản.**
+1. Mở Discord trên trình duyệt, đăng nhập tài khoản cần xác minh
+2. Nhấn **F12** → tab **Console**
+3. Gõ `allow pasting` rồi Enter
+4. Paste **toàn bộ script** (phần thu gọn cuối README) → Enter
+5. Click icon xanh nổi → mở panel
+6. Chọn phương thức → **Generate verification link**
+7. Link tự copy. Nếu không thì nhấn **Copy**
+8. Trong server: `/redeem <key>` → `/verify <link>`
+9. Đợi bot báo **`success`**
 
 ### Phương thức xác minh
 
 | Method ID | Tên          | Vendor | Nhà cung cấp     |
-| --------- | ------------ | ------ | ---------------- |
+|-----------|--------------|--------|------------------|
 | 5         | Credit Card  | 1      | Provided by k-ID |
 | 3         | Video Selfie | 1      | Provided by k-ID |
 | 1         | ID Scan      | 1      | Provided by k-ID |
 | 10        | AgeKey       | 1      | Provided by k-ID |
 
-Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu không lấy được module.
-
 ### Ghi chú kỹ thuật
 
-- `webpackChunkdiscord_app.push(...)` lấy webpack module registry
-- Module `482876` export danh sách method (`J`)
-- Module `295972` export hàm tạo link (`en`)
-- `en(method, vendor)` trả về object chứa `verification_webview_url`
-- UI inject vào shadow DOM để không bị style Discord ảnh hưởng
-- Bot submit link phía server và poll status của k-ID
+- Script tìm module webpack động (không hardcode ID cố định)
+- UI inject vào Shadow DOM
+- Bot xử lý link phía server và poll status của k-ID
 
 ### Xử lý sự cố
 
-| Vấn đề | Cách khắc phục |
-| ------ | -------------- |
-| Verification module unavailable | Reload trang và chạy lại script. Discord đã đổi module ID. |
-| Request timed out after 20 seconds | API Discord chậm hoặc bị chặn. Kiểm tra tab Network. |
-| Console chặn paste | Gõ `allow pasting` trước (bước 3). |
-| Icon không xuất hiện | Script có thể đã lỗi. Kiểm tra console. |
-| Link mở được nhưng verify thất bại | Link gắn với session. Generate từ đúng tài khoản cần xác minh. |
-| Bot báo "No active key" | Chạy `/redeem` trước, hoặc xin key từ `tinysweet._.`. |
-| Bot báo "Link expired" | Tạo link mới và `/verify` lại. |
+| Vấn đề                             | Cách khắc phục                                      |
+|------------------------------------|-----------------------------------------------------|
+| Verification module unavailable    | Reload trang và chạy lại script                     |
+| Request timed out after 20 seconds | Kiểm tra Network tab                                |
+| Console chặn paste                 | Gõ `allow pasting` trước                            |
+| Icon không xuất hiện               | Xem lỗi trong console                               |
+| Link mở được nhưng verify thất bại | Generate từ đúng tài khoản cần xác minh             |
+| Bot báo "No active key"            | Chạy `/redeem` trước                                |
+| Bot báo "Link expired"             | Tạo link mới rồi `/verify` lại                      |
 
 </details>
 
 ---
 
 <details>
-<summary><b>Full script</b> — click to expand.</summary>
+<summary><b>Full Script</b> — click to expand</summary>
 
 ```js
 (() => {
@@ -159,6 +163,46 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
 
     const w = webpackChunkdiscord_app.push([[Symbol()], {}, r => r]);
     webpackChunkdiscord_app.pop();
+
+    function moduleExports(id) {
+        try { return w(id); } catch { return null; }
+    }
+
+    function findAgeApi() {
+        for (const [id, factory] of Object.entries(w.m || {})) {
+            const source = Function.prototype.toString.call(factory);
+            if (!source.includes('VERIFY_AGE_V2') ||
+                !source.includes('AGE_VERIFICATION_METHODS_LOAD_START')) continue;
+
+            const exports = moduleExports(id);
+            if (!exports || typeof exports !== 'object') continue;
+            const request = Object.values(exports).find(fn => {
+                if (typeof fn !== 'function' || fn.length !== 2) return false;
+                const code = Function.prototype.toString.call(fn);
+                return /method\s*:\s*[^,}]+/.test(code) &&
+                    /vendor\s*:\s*[^,}]+/.test(code);
+            });
+            const loadMethods = Object.values(exports).find(fn => {
+                if (typeof fn !== 'function' || fn.length !== 0) return false;
+                const code = Function.prototype.toString.call(fn);
+                return code.includes('AGE_VERIFICATION_METHODS_LOAD_START') &&
+                    code.includes('AGE_VERIFICATION_METHODS_LOAD_SUCCESS');
+            });
+            if (request) return { request, loadMethods, id };
+        }
+        return null;
+    }
+
+    function findMethodGetters() {
+        const getters = [];
+        for (const [id, factory] of Object.entries(w.m || {})) {
+            const source = Function.prototype.toString.call(factory);
+            if (!source.includes('AGE_VERIFICATION_METHODS')) continue;
+            const getter = moduleExports(id)?.J;
+            if (typeof getter === 'function') getters.push(getter);
+        }
+        return getters;
+    }
 
     const defaultMethods = [
         { method: 5,  vendor: 1, title: 'Credit Card',  by: 'Provided by k-ID' },
@@ -169,18 +213,23 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
     let methodList = defaultMethods;
     let selectedMethod = methodList.find(x => x.method === 5 && x.vendor === 1) || methodList[0];
 
-    try {
-        const q = w(482876)?.J;
-        if (typeof q === 'function') {
-            Promise.resolve(q()).then(x => {
-                if (Array.isArray(x) && x.length) {
-                    methodList = x;
+    const ageApi = findAgeApi();
+    const methodGetters = findMethodGetters();
+
+    (async () => {
+        for (const getMethods of methodGetters) {
+            try {
+                const methods = await getMethods();
+                if (Array.isArray(methods) && methods.length) {
+                    methodList = methods;
                     populateSelect();
                     setStatus('Ready');
+                    return;
                 }
-            }).catch(() => {});
+            } catch {}
         }
-    } catch {}
+        try { ageApi?.loadMethods?.(); } catch {}
+    })();
 
     const host = document.createElement('div');
     host.id = 'age-verification-ui';
@@ -531,10 +580,10 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
         urlInput.value = '';
         setStatus('Contacting Discord...');
         try {
-            const mod = w(295972);
-            if (!mod?.en) throw new Error('Verification module unavailable');
+            const api = findAgeApi();
+            if (typeof api?.request !== 'function') throw new Error('Verification module unavailable');
             const res = await Promise.race([
-                mod.en(selectedMethod.method, selectedMethod.vendor),
+                api.request(selectedMethod.method, selectedMethod.vendor),
                 new Promise((_, reject) => setTimeout(() => reject(new Error('Request timed out after 20 seconds')), 20000))
             ]);
             const link = res?.verification_webview_url;
@@ -603,5 +652,3 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
     console.log('%c[Age Verification] Ready', 'color:#5865f2;font-weight:bold');
 })();
 ```
-
-</details>
