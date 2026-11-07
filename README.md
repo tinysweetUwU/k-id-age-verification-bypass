@@ -150,7 +150,7 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
 ---
 
 <details>
-<summary><b>Full script</b> — click to expand, then copy all</summary>
+<summary><b>Full script</b> — click to expand.</summary>
 
 ```js
 (() => {
@@ -228,12 +228,38 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
         #closeBtn:hover { background: #2b2d31; color: #fff; }
         #body { padding: 16px; }
         #methodLabel { display: flex; align-items: center; gap: 7px; margin-bottom: 7px; color: #b5bac1; font-size: 12px; }
-        #methodSelect, #urlInput {
-            width: 100%; border: 1px solid #3f4147; border-radius: 10px;
-            outline: none; background: #1e1f22; color: #fff;
+        #methodPicker { position: relative; margin-bottom: 10px; user-select: none; }
+        #methodTrigger {
+            width: 100%; height: 46px; padding: 0 13px; border: 1px solid #3f4147;
+            border-radius: 11px; outline: none; background: #1e1f22; color: #f2f3f5;
+            display: flex; align-items: center; justify-content: space-between;
+            text-align: left; cursor: pointer; transition: border-color .15s, background .15s;
         }
-        #methodSelect { height: 44px; padding: 0 11px; margin-bottom: 10px; font-size: 13px; }
-        #urlInput { height: 44px; padding: 0 11px; margin-top: 10px; font-size: 12px; }
+        #methodTrigger:hover, #methodPicker.open #methodTrigger { border-color: #5865f2; background: #24252a; }
+        #methodCurrent { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
+        #methodChevron { width: 16px; height: 16px; color: #949ba4; transition: transform .18s; flex: 0 0 auto; }
+        #methodPicker.open #methodChevron { transform: rotate(180deg); }
+        #methodMenu {
+            display: none; position: absolute; z-index: 5; top: calc(100% + 7px); left: 0; right: 0;
+            max-height: 230px; overflow-y: auto; padding: 5px; border: 1px solid #3f4147;
+            border-radius: 12px; background: #18191c; box-shadow: 0 14px 35px rgba(0,0,0,.5);
+        }
+        #methodPicker.open #methodMenu { display: block; }
+        .methodOption {
+            width: 100%; min-height: 42px; padding: 8px 10px; border: 0; border-radius: 8px;
+            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            background: transparent; color: #dbdee1; text-align: left; cursor: pointer;
+            user-select: none; transition: background .12s, color .12s;
+        }
+        .methodOption:hover, .methodOption:focus-visible { outline: none; background: #2b2d31; color: #fff; }
+        .methodOption.active { background: rgba(88,101,242,.17); color: #c9ceff; }
+        .methodOption small { color: #949ba4; font-size: 11px; white-space: nowrap; }
+        #urlInput {
+            width: 100%; height: 44px; padding: 0 11px; margin-top: 10px;
+            border: 1px solid #3f4147; border-radius: 10px;
+            outline: none; background: #1e1f22; color: #fff; user-select: text;
+        }
+        #panel, #panel *:not(input) { -webkit-user-select: none; user-select: none; }
         .btn {
             height: 42px; border: 0; border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
@@ -269,6 +295,7 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
     iconEl.id = 'icon';
     iconEl.innerHTML = '<img alt="">';
     iconEl.querySelector('img').src = 'https://cdn.discordapp.com/icons/1557983883704795217/fe40ed3b5225f619bfed03c40d33d975.webp?size=80&quality=lossless';
+
     const panelEl = document.createElement('div');
     panelEl.id = 'panel';
 
@@ -293,8 +320,17 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
         </svg>
         <span>Verification method</span>`;
 
-    const methodSelect = document.createElement('select');
-    methodSelect.id = 'methodSelect';
+    const methodPicker = document.createElement('div');
+    methodPicker.id = 'methodPicker';
+    methodPicker.innerHTML = `
+        <button id="methodTrigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+            <span id="methodCurrent">Choose verification method</span>
+            <svg id="methodChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div id="methodMenu" role="listbox" aria-label="Verification methods"></div>`;
+    const methodTrigger = methodPicker.querySelector('#methodTrigger');
+    const methodCurrent = methodPicker.querySelector('#methodCurrent');
+    const methodMenu = methodPicker.querySelector('#methodMenu');
 
     const genBtn = document.createElement('button');
     genBtn.id = 'genBtn';
@@ -336,20 +372,52 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
     statusMsg.id = 'statusMsg';
 
     actionsEl.append(copyBtn, openBtn);
-    bodyEl.append(methodLabel, methodSelect, genBtn, urlInput, actionsEl, statusMsg);
+    bodyEl.append(methodLabel, methodPicker, genBtn, urlInput, actionsEl, statusMsg);
     panelEl.append(headEl, bodyEl);
     shadow.append(iconEl, panelEl);
 
+    function methodName(item) {
+        return item.by ? `${item.title} • ${item.by}` : item.title;
+    }
+
     function populateSelect() {
-        methodSelect.innerHTML = '';
+        methodMenu.innerHTML = '';
         for (const item of methodList) {
-            const opt = document.createElement('option');
-            opt.value = `${item.method}:${item.vendor}`;
-            opt.textContent = item.by ? `${item.title} • ${item.by}` : item.title;
-            methodSelect.appendChild(opt);
+            const option = document.createElement('button');
+            option.type = 'button';
+            option.className = 'methodOption';
+            option.setAttribute('role', 'option');
+            option.dataset.value = `${item.method}:${item.vendor}`;
+            option.innerHTML = `<span></span><small></small>`;
+            option.querySelector('span').textContent = item.title || `Method ${item.method}`;
+            option.querySelector('small').textContent = item.by || '';
+            option.addEventListener('click', () => {
+                selectedMethod = item;
+                methodCurrent.textContent = methodName(item);
+                methodMenu.querySelectorAll('.methodOption').forEach(el => {
+                    const active = el === option;
+                    el.classList.toggle('active', active);
+                    el.setAttribute('aria-selected', String(active));
+                });
+                methodPicker.classList.remove('open');
+                methodTrigger.setAttribute('aria-expanded', 'false');
+                urlInput.value = '';
+                genBtn.classList.remove('success', 'error');
+                genBtn.querySelector('span').textContent = 'Generate verification link';
+                setStatus('');
+            });
+            methodMenu.appendChild(option);
         }
         selectedMethod = methodList.find(x => x.method === selectedMethod.method && x.vendor === selectedMethod.vendor) || methodList[0];
-        methodSelect.value = `${selectedMethod.method}:${selectedMethod.vendor}`;
+        if (selectedMethod) {
+            methodCurrent.textContent = methodName(selectedMethod);
+            const selected = `${selectedMethod.method}:${selectedMethod.vendor}`;
+            methodMenu.querySelectorAll('.methodOption').forEach(el => {
+                const active = el.dataset.value === selected;
+                el.classList.toggle('active', active);
+                el.setAttribute('aria-selected', String(active));
+            });
+        }
     }
 
     function setStatus(text, type = '') {
@@ -420,12 +488,41 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
     closeBtn.addEventListener('pointerdown', e => e.stopPropagation());
     closeBtn.addEventListener('click', e => { e.stopPropagation(); panelEl.style.display = 'none'; });
 
-    methodSelect.onchange = () => {
-        const [method, vendor] = methodSelect.value.split(':').map(Number);
-        selectedMethod = { method, vendor };
-        urlInput.value = '';
-        setStatus('');
-    };
+    methodTrigger.addEventListener('click', () => {
+        const open = !methodPicker.classList.contains('open');
+        methodPicker.classList.toggle('open', open);
+        methodTrigger.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('pointerdown', e => {
+        if (!host.contains(e.target) && !methodPicker.contains(e.target)) {
+            methodPicker.classList.remove('open');
+            methodTrigger.setAttribute('aria-expanded', 'false');
+        }
+    });
+    methodTrigger.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            methodPicker.classList.remove('open');
+            methodTrigger.setAttribute('aria-expanded', 'false');
+        }
+        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            methodPicker.classList.add('open');
+            methodTrigger.setAttribute('aria-expanded', 'true');
+            methodMenu.querySelector('.methodOption')?.focus();
+        }
+    });
+    methodMenu.addEventListener('keydown', e => {
+        const options = [...methodMenu.querySelectorAll('.methodOption')];
+        const index = options.indexOf(shadow.activeElement);
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            options[(index + (e.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length]?.focus();
+        } else if (e.key === 'Escape') {
+            methodPicker.classList.remove('open');
+            methodTrigger.setAttribute('aria-expanded', 'false');
+            methodTrigger.focus();
+        }
+    });
 
     genBtn.onclick = async () => {
         genBtn.classList.remove('error', 'success');
@@ -454,7 +551,14 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
             console.log('[Age Verification]', res);
         } catch (e) {
             console.error('[Age Verification]', e);
-            setStatus(e?.message || String(e), 'err');
+            const rawError = e?.message || String(e);
+            const requestUrl = e?.request?.url || e?.config?.url || e?.url || e?.path;
+            const requestMethod = e?.request?.method || e?.config?.method || e?.method || 'POST';
+            const statusCode = e?.status || e?.statusCode || e?.response?.status;
+            const detail = requestUrl
+                ? `${requestMethod.toUpperCase()} ${requestUrl}${statusCode ? ` [${statusCode}]` : ''} — ${rawError}`
+                : rawError;
+            setStatus(detail, 'err');
             genBtn.classList.remove('success');
             genBtn.classList.add('error');
             genBtn.querySelector('span').textContent = 'Try again';
