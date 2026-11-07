@@ -60,7 +60,7 @@ Khi thành công bot sẽ trả lời **`success`**.
 2. Press **F12** → open the **Console** tab
 3. Type `allow pasting` and press Enter
 4. Paste the **entire script** (collapsible at the bottom) and press Enter
-5. Click the floating blue icon → open the panel
+5. Click the floating icon → open the panel
 6. Select a verification method → click **Generate verification link**
 7. The link is auto-copied. If not, click **Copy**
 8. In the support server: `/redeem <key>` → `/verify <link>`
@@ -116,7 +116,7 @@ The list is fetched live from Discord. The table above is the fallback if module
 2. Nhấn **F12** → tab **Console**
 3. Gõ `allow pasting` rồi Enter
 4. Paste **toàn bộ script** (phần thu gọn cuối README) → Enter
-5. Click icon xanh nổi → mở panel
+5. Click icon nổi → mở panel
 6. Chọn phương thức → **Generate verification link**
 7. Link tự copy. Nếu không thì nhấn **Copy**
 8. Trong server: `/redeem <key>` → `/verify <link>`
