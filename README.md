@@ -556,11 +556,11 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
             const requestMethod = e?.request?.method || e?.config?.method || e?.response?.config?.method || e?.method || 'POST';
             const statusCode = e?.response?.status ?? e?.status ?? e?.statusCode;
             const cleanError = rawError
-                .replace(/(?:GET|POST|PUT|PATCH|DELETE)\\s+\\/age-verification\\/verify\\/v\\w+\\s*\\[\\d{3}\\]\\s*:?\\s*/i, '')
+                .replace(/(?:GET|POST|PUT|PATCH|DELETE)\s+\/age-verification\/verify\/v\w+\s*\[\d{3}\]\s*:?\s*/i, '')
                 .trim();
             const detail = requestUrl
                 ? `${requestMethod.toUpperCase()} ${requestUrl}${statusCode != null ? ` [${statusCode}]` : ''}${cleanError ? ` — ${cleanError}` : ''}`
-                : rawError.replace(/\\/age-verification\\/verify\\/vxxx/gi, requestUrl || '');
+                : rawError.replace(/\/age-verification\/verify\/vxxx/gi, requestUrl || '');
             setStatus(detail, 'err');
             genBtn.classList.remove('success');
             genBtn.classList.add('error');
