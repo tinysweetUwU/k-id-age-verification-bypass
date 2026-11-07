@@ -253,7 +253,7 @@ The list is fetched live from Discord. The table above is the fallback if module
         #panel {
             position: fixed; right: 18px; bottom: 86px;
             width: 420px; max-width: calc(100vw - 24px);
-            display: none; overflow: hidden; border-radius: 17px;
+            display: none; overflow: visible; border-radius: 17px;
             background: #111214; color: #fff;
             border: 1px solid rgba(255,255,255,.08);
             box-shadow: 0 25px 80px rgba(0,0,0,.55);
@@ -263,7 +263,7 @@ The list is fetched live from Discord. The table above is the fallback if module
         #head {
             height: 52px; padding: 0 12px 0 16px;
             display: flex; align-items: center; justify-content: space-between;
-            background: #18191c; cursor: grab;
+            background: #18191c; border-radius: 17px 17px 0 0; cursor: grab;
             user-select: none; touch-action: none;
         }
         #head.dragging { cursor: grabbing; }
@@ -277,7 +277,8 @@ The list is fetched live from Discord. The table above is the fallback if module
         #closeBtn:hover { background: #2b2d31; color: #fff; }
         #body { padding: 16px; }
         #methodLabel { display: flex; align-items: center; gap: 7px; margin-bottom: 7px; color: #b5bac1; font-size: 12px; }
-        #methodPicker { position: relative; margin-bottom: 10px; user-select: none; }
+        #methodPicker { position: relative; z-index: 10; margin-bottom: 10px; user-select: none; }
+        #methodPicker.open { z-index: 20; }
         #methodTrigger {
             width: 100%; height: 46px; padding: 0 13px; border: 1px solid #3f4147;
             border-radius: 11px; outline: none; background: #1e1f22; color: #f2f3f5;
@@ -295,18 +296,55 @@ The list is fetched live from Discord. The table above is the fallback if module
         }
         #methodPicker.open #methodMenu { display: block; }
         .methodOption {
-            width: 100%; min-height: 42px; padding: 8px 10px; border: 0; border-radius: 8px;
-            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            width: 100%; min-height: 48px; padding: 7px 10px; border: 0; border-radius: 9px;
+            display: flex; align-items: center; justify-content: flex-start; gap: 10px;
             background: transparent; color: #dbdee1; text-align: left; cursor: pointer;
             user-select: none; transition: background .12s, color .12s;
         }
         .methodOption:hover, .methodOption:focus-visible { outline: none; background: #2b2d31; color: #fff; }
         .methodOption.active { background: rgba(88,101,242,.17); color: #c9ceff; }
-        .methodOption small { color: #949ba4; font-size: 11px; white-space: nowrap; }
+        .methodIcon {
+            width: 30px; height: 30px; flex: 0 0 30px; display: grid; place-items: center;
+            border-radius: 9px; color: #a5adff; background: rgba(88,101,242,.13);
+        }
+        .methodIcon svg { width: 16px; height: 16px; }
+        .methodText { min-width: 0; display: flex; flex: 1; flex-direction: column; gap: 2px; }
+        .methodText strong { font-size: 12px; font-weight: 600; }
+        .methodText small { color: #949ba4; font-size: 10px; white-space: nowrap; }
+        .methodCheck { width: 15px; height: 15px; color: #a5adff; opacity: 0; flex: 0 0 auto; }
+        .methodOption.active .methodCheck { opacity: 1; }
+        #urlFrame {
+            position: relative; isolation: isolate; width: 100%; height: 48px;
+            margin-top: 10px; padding: 2px; border-radius: 12px;
+            overflow: hidden; background: #292b36;
+            box-shadow: 0 0 0 1px rgba(111,126,255,.28),
+                        0 0 10px rgba(88,101,242,.38),
+                        0 0 20px rgba(139,92,246,.2);
+        }
+        #urlFrame::before {
+            content: ''; position: absolute; z-index: -1;
+            width: 220%; height: 520%; left: -60%; top: -210%;
+            background: conic-gradient(from 0deg,
+                transparent 0deg 250deg,
+                #5865f2 275deg, #38bdf8 292deg,
+                #c084fc 310deg, #5865f2 330deg,
+                transparent 350deg 360deg);
+            animation: urlBorderSpin 2.8s linear infinite;
+            filter: drop-shadow(0 0 5px #818cf8);
+        }
+        #urlFrame::after {
+            content: ''; position: absolute; inset: 2px; z-index: 0;
+            border-radius: 10px; background: #1e1f22;
+        }
+        @keyframes urlBorderSpin { to { transform: rotate(360deg); } }
+        @media (prefers-reduced-motion: reduce) {
+            #urlFrame::before { animation-duration: 12s; }
+        }
         #urlInput {
-            width: 100%; height: 44px; padding: 0 11px; margin-top: 10px;
-            border: 1px solid #3f4147; border-radius: 10px;
-            outline: none; background: #1e1f22; color: #fff; user-select: text;
+            position: relative; z-index: 1; display: block;
+            width: 100%; height: 44px; padding: 0 11px; margin: 0;
+            border: 0; border-radius: 10px; outline: none;
+            background: transparent; color: #fff; user-select: text;
         }
         #panel, #panel *:not(input) { -webkit-user-select: none; user-select: none; }
         .btn {
@@ -391,10 +429,13 @@ The list is fetched live from Discord. The table above is the fallback if module
         </svg>
         <span>Generate verification link</span>`;
 
+    const urlFrame = document.createElement('div');
+    urlFrame.id = 'urlFrame';
     const urlInput = document.createElement('input');
     urlInput.id = 'urlInput';
     urlInput.readOnly = true;
     urlInput.placeholder = 'Verification URL will appear here';
+    urlFrame.appendChild(urlInput);
 
     const actionsEl = document.createElement('div');
     actionsEl.id = 'actions';
@@ -421,7 +462,7 @@ The list is fetched live from Discord. The table above is the fallback if module
     statusMsg.id = 'statusMsg';
 
     actionsEl.append(copyBtn, openBtn);
-    bodyEl.append(methodLabel, methodPicker, genBtn, urlInput, actionsEl, statusMsg);
+    bodyEl.append(methodLabel, methodPicker, genBtn, urlFrame, actionsEl, statusMsg);
     panelEl.append(headEl, bodyEl);
     shadow.append(iconEl, panelEl);
 
@@ -437,9 +478,19 @@ The list is fetched live from Discord. The table above is the fallback if module
             option.className = 'methodOption';
             option.setAttribute('role', 'option');
             option.dataset.value = `${item.method}:${item.vendor}`;
-            option.innerHTML = `<span></span><small></small>`;
-            option.querySelector('span').textContent = item.title || `Method ${item.method}`;
-            option.querySelector('small').textContent = item.by || '';
+            const title = item.title || `Method ${item.method}`;
+            const iconPath = /card|payment/i.test(title)
+                ? '<rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M3 10h18"/>'
+                : /selfie|video/i.test(title)
+                ? '<rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3z"/>'
+                : /id|scan|document/i.test(title)
+                ? '<path d="M7 3h7l4 4v14H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>'
+                : /agekey|age key/i.test(title)
+                ? '<circle cx="8.5" cy="8.5" r="4.5"/><path d="m12 12 8 8m-3-3 2-2m-5-1 2-2"/>'
+                : '<circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/>';
+            option.innerHTML = `<span class="methodIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${iconPath}</svg></span><span class="methodText"><strong></strong><small></small></span><svg class="methodCheck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>`;
+            option.querySelector('strong').textContent = title;
+            option.querySelector('.methodText small').textContent = item.by || '';
             option.addEventListener('click', () => {
                 selectedMethod = item;
                 methodCurrent.textContent = methodName(item);
