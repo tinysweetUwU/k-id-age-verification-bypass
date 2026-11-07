@@ -182,14 +182,12 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
         }
     } catch {}
 
-    // ── Root shadow host ──────────────────────────────────────
     const host = document.createElement('div');
     host.id = 'age-verification-ui';
     host.style.cssText = 'position:fixed;inset:0;width:0;height:0;z-index:2147483647;pointer-events:none';
     document.documentElement.appendChild(host);
     const shadow = host.attachShadow({ mode: 'open' });
 
-    // ── Styles ────────────────────────────────────────────────
     const style = document.createElement('style');
     style.textContent = `
         * { box-sizing: border-box; }
@@ -267,17 +265,13 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
     `;
     shadow.appendChild(style);
 
-    // ── Icon button ───────────────────────────────────────────
     const iconEl = document.createElement('div');
     iconEl.id = 'icon';
     iconEl.innerHTML = '<img alt="">';
     iconEl.querySelector('img').src = 'https://cdn.discordapp.com/icons/1557983883704795217/fe40ed3b5225f619bfed03c40d33d975.webp?size=80&quality=lossless';
-
-    // ── Panel ─────────────────────────────────────────────────
     const panelEl = document.createElement('div');
     panelEl.id = 'panel';
 
-    // Head
     const headEl = document.createElement('div');
     headEl.id = 'head';
     headEl.innerHTML = `
@@ -288,7 +282,6 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
             </svg>
         </button>`;
 
-    // Body
     const bodyEl = document.createElement('div');
     bodyEl.id = 'body';
 
@@ -347,7 +340,6 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
     panelEl.append(headEl, bodyEl);
     shadow.append(iconEl, panelEl);
 
-    // ── Helpers ───────────────────────────────────────────────
     function populateSelect() {
         methodSelect.innerHTML = '';
         for (const item of methodList) {
@@ -417,7 +409,6 @@ Danh sách fetch trực tiếp từ Discord. Bảng trên là fallback nếu kh�
         });
     }
 
-    // ── Events ────────────────────────────────────────────────
     iconEl.onclick = () => {
         if (iconEl.dataset.dragged === '1') { iconEl.dataset.dragged = '0'; return; }
         const show = panelEl.style.display !== 'block';
