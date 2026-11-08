@@ -1,8 +1,8 @@
 # k-ID Age Verification Bypass
 
-[![Support](https://img.shields.io/discord/1557983883704795217?style=for-the-badge&logo=discord&logoColor=white&label=Support&color=5865F2)](http://discord.gg/tinysweet)
+[![Support](https://img.shields.io/discord/1557983883704795217?style=for-the-badge&logo=discord&logoColor=white&label=Support&color=5865F2)](https://discord.gg/tinysweet)
 [![Browser](https://img.shields.io/badge/Browser%20Console-000000?style=for-the-badge&logo=googlechrome&logoColor=white)](#usage)
-[![Status](https://img.shields.io/badge/Status-Working-success?style=for-the-badge)](https://discord.gg/wkwsthag5D)
+[![Status](https://img.shields.io/badge/Status-Working-success?style=for-the-badge)](https://discord.gg/tinysweet)
 
 > Discord bot tự động hoàn thành **k-ID Age Verification** cho bạn.
 
