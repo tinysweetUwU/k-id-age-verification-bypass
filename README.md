@@ -19,13 +19,13 @@ Khi thành công bot sẽ trả lời **`success`**.
 - **Mua key**: vào server rồi DM `tinysweet._.`
 - **Lấy key free**: tham gia **giveaways** trong server
 
-**Support server:** [http://discord.gg/tinysweet](http://discord.gg/tinysweet)
+**Support server:** [https://discord.com/invite/tinysweet](https://discord.com/invite/tinysweet)
 
 ---
 
 ## Cách hoạt động
 
-1. Join server → [http://discord.gg/tinysweet](http://discord.gg/tinysweet)
+1. Join server → [https://discord.com/invite/tinysweet](https://discord.com/invite/tinysweet)
 2. Lấy key (mua hoặc win giveaway)
 3. `/redeem <key>` (bind key vào tài khoản Discord)
 4. Dùng script bên dưới để **Generate verification link**
